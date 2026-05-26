@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  repo-safety:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check for forbidden environment files
+        run: |
+          if find . -name ".env" -o -name ".env.local" -o -name ".env.production" | grep -v "node_modules"; then
+            echo "Forbidden environment file committed"
+            exit 1
+          fi
+      - name: Placeholder CI
+        run: |
+          echo "Application CI will be expanded when implementation starts."

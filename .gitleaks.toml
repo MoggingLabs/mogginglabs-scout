@@ -1,0 +1,12 @@
+title = "MoggingLabs Scout secret scanning"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Allow placeholder example values only"
+regexes = [
+  "server_only_placeholder",
+  "your_publishable_or_anon_key",
+  "https://your-project.supabase.co"
+]
