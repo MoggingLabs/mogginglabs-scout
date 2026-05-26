@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 99%;
+    --foreground: 224 18% 13%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 18% 13%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 18% 13%;
+    --primary: 167 72% 28%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 218 16% 93%;
+    --secondary-foreground: 224 18% 13%;
+    --muted: 218 16% 93%;
+    --muted-foreground: 222 10% 42%;
+    --accent: 39 88% 54%;
+    --accent-foreground: 224 18% 13%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 14% 88%;
+    --input: 220 14% 88%;
+    --ring: 167 72% 28%;
+    --radius: 0.5rem;
+  }
+
+  .theme-app {
+    --background: 222 32% 7%;
+    --foreground: 214 28% 94%;
+    --card: 222 28% 10%;
+    --card-foreground: 214 28% 94%;
+    --popover: 222 28% 10%;
+    --popover-foreground: 214 28% 94%;
+    --primary: 168 76% 42%;
+    --primary-foreground: 222 32% 7%;
+    --secondary: 219 21% 18%;
+    --secondary-foreground: 214 28% 94%;
+    --muted: 219 21% 18%;
+    --muted-foreground: 215 17% 68%;
+    --accent: 42 91% 58%;
+    --accent-foreground: 222 32% 7%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 218 19% 22%;
+    --input: 218 19% 22%;
+    --ring: 168 76% 42%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    min-height: 100%;
+  }
+
+  body {
+    min-height: 100%;
+  }
+}
