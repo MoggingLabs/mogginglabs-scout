@@ -12,10 +12,32 @@ jobs:
       - uses: actions/checkout@v4
       - name: Check for forbidden environment files
         run: |
-          if find . -name ".env" -o -name ".env.local" -o -name ".env.production" | grep -v "node_modules"; then
+          if find . \( -path "./.git" -o -path "./node_modules" -o -path "./.next" \) -prune -o -type f \( -name ".env" -o -name ".env.*" \) ! -name ".env.example" -print | grep .; then
             echo "Forbidden environment file committed"
             exit 1
           fi
-      - name: Placeholder CI
+
+  app-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enable pnpm
         run: |
-          echo "Application CI will be expanded when implementation starts."
+          corepack enable
+          corepack prepare pnpm@9.15.4 --activate
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Lint
+        run: pnpm lint
+      - name: Test
+        run: pnpm test
+      - name: Build
+        run: pnpm build
+      - name: Check excluded feature terms
+        run: node scripts/check-no-route-planning.mjs

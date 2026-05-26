@@ -17,4 +17,3 @@
 - [ ] No route planning functionality added
 
 ## Review status
-
