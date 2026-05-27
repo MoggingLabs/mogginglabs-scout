@@ -1,8 +1,9 @@
 import { redirect } from "next/navigation";
 
 import { getAppContext, type AppContext } from "@/lib/account/context";
+import { readRequestPathname } from "@/lib/routing/request-pathname";
 
-import { AppProviders, NoMembershipRedirect } from "./providers";
+import { AppProviders } from "./providers";
 
 export const dynamic = "force-dynamic";
 
@@ -51,11 +52,13 @@ export default async function AppLayout({
   }
 
   if (context.kind === "no-membership") {
-    return (
-      <AppShell>
-        <NoMembershipRedirect>{children}</NoMembershipRedirect>
-      </AppShell>
-    );
+    const pathname = await readRequestPathname();
+
+    if (pathname !== "/no-access") {
+      return redirect("/no-access");
+    }
+
+    return <AppShell>{children}</AppShell>;
   }
 
   return (
