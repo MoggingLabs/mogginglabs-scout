@@ -19,7 +19,8 @@ This slice adds the visual and navigation shell for the CSV import flow. It inte
 
 ### Out of scope
 
-- File persistence, parser logic, column mapping behavior, validation, deduplication, or lead commits.
+- File persistence, validation, deduplication, or lead commits.
+- Local CSV parser and mapping metadata are now implemented in `src/lib/imports/csv.ts` for #14.
 - Live Supabase storage, live imports, or real lead files.
 - Any outbound sending, AI analysis, map intelligence, route planning, or physical visit workflow.
 
