@@ -2,11 +2,28 @@ import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 
 import { getPublicSupabaseEnv, isSupabaseEnvMissingError } from "@/lib/env";
+import { REQUEST_PATHNAME_HEADER } from "@/lib/routing/constants";
 import type { Database } from "@/lib/supabase/types";
 
+export function buildPathnameRequestHeaders(
+  headers: Headers,
+  pathname: string
+): Headers {
+  const requestHeaders = new Headers(headers);
+  requestHeaders.set(REQUEST_PATHNAME_HEADER, pathname);
+
+  return requestHeaders;
+}
+
 export async function proxy(request: NextRequest) {
+  const requestHeaders = buildPathnameRequestHeaders(
+    request.headers,
+    request.nextUrl.pathname
+  );
   let response = NextResponse.next({
-    request
+    request: {
+      headers: requestHeaders
+    }
   });
 
   try {
@@ -24,7 +41,12 @@ export async function proxy(request: NextRequest) {
               request.cookies.set(name, value)
             );
             response = NextResponse.next({
-              request
+              request: {
+                headers: buildPathnameRequestHeaders(
+                  request.headers,
+                  request.nextUrl.pathname
+                )
+              }
             });
             cookiesToSet.forEach(({ name, value, options }) =>
               response.cookies.set(name, value, options)
