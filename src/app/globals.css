@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+  /* Light landing theme: default surface for public pages (landing, login). */
+  :root,
+  .theme-landing {
     --background: 0 0% 99%;
     --foreground: 224 18% 13%;
     --card: 0 0% 100%;
@@ -26,6 +28,7 @@
     --radius: 0.5rem;
   }
 
+  /* Dark application theme: authenticated app shell behind sign-in. */
   .theme-app {
     --background: 222 32% 7%;
     --foreground: 214 28% 94%;

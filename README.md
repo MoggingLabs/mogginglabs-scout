@@ -43,6 +43,15 @@ Validation:
 pnpm typecheck
 pnpm lint
 pnpm test
+pnpm format
 pnpm build
 node scripts/check-no-route-planning.mjs
 ```
+
+## Documentation
+
+- `docs/architecture.md` — application layout and boundaries.
+- `docs/design-system.md` — Geist typography, theme tokens, and base UI
+  components.
+- `docs/deployment-preview.md` — Vercel preview readiness (configuration and
+  manual steps only; no deployment is performed).
