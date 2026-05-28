@@ -27,7 +27,7 @@ src/
     page.tsx             Public landing placeholder
   components/
     app-context-provider.tsx  Client context for non-PII tenant/profile state
-    ui/                    Empty shadcn-compatible component target
+    ui/                    Base UI primitives (button, card, input, label, badge)
   lib/
     __tests__/           Unit tests for utilities and env parsing
     account/              Profile, membership, and AppContext helpers
@@ -62,5 +62,5 @@ most recent membership update, then tenant id.
 - `src/proxy.ts` is intentional for the Next 16 middleware-as-proxy convention.
 - Supabase helpers validate required public Supabase variables only when used.
 - `supabase/migrations/` stores reviewable SQL only; no migration runs during build or test.
-- Provider SDKs, payments, browser automation, generated UI components, and live deployments are outside Phase 6.
+- Provider SDKs, payments, browser automation, and live deployments remain unwired. The base UI foundation is documented in `docs/design-system.md`; CLI-generated component installs are still out of scope.
 - Territory or map-oriented product surfaces must stay limited to prospecting context and exclude physical visit workflows.

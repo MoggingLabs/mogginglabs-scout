@@ -1,30 +1,39 @@
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
 export default function LoginPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center px-6">
-      <section className="w-full max-w-sm rounded-lg border bg-card p-6 text-card-foreground shadow-sm">
-        <h1 className="text-2xl font-semibold">Sign in</h1>
-        <p className="mt-2 text-sm leading-6 text-muted-foreground">
-          Authentication is not wired in Phase 5.
-        </p>
-        <div className="mt-6 space-y-4">
-          <label className="block text-sm font-medium">
-            Email
-            <input
+    <main className="theme-landing flex min-h-screen items-center justify-center bg-background px-6 text-foreground">
+      <Card className="w-full max-w-sm">
+        <CardHeader>
+          <CardTitle className="text-2xl">Sign in</CardTitle>
+          <CardDescription>
+            Authentication is not wired in this milestone.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
               type="email"
               placeholder="name@example.com"
-              className="mt-2 h-10 w-full rounded-md border bg-background px-3 text-sm outline-none ring-offset-background placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               disabled
             />
-          </label>
-          <button
-            type="button"
-            disabled
-            className="h-10 w-full rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground opacity-60"
-          >
+          </div>
+          <Button disabled className="w-full">
             Continue
-          </button>
-        </div>
-      </section>
+          </Button>
+        </CardContent>
+      </Card>
     </main>
   );
 }
