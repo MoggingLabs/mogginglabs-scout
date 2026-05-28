@@ -19,6 +19,7 @@ Phase 6 extends the application foundation with tenant, profile, and membership 
 src/
   app/
     (app)/dashboard/     Authenticated dashboard shell placeholder
+    (app)/imports/       CSV import wizard shell (UI only in M2 #13)
     (app)/no-access/     Authenticated empty-membership state
     (app)/providers.tsx  Client boundary for app context and no-membership routing
     (auth)/login/        Login placeholder
@@ -68,6 +69,11 @@ later live-wiring phase generates types from an applied Supabase project.
 The schema keeps lead ownership under `tenant_id`, links imports to their source
 and committed leads, and records only reviewable structure. It does not apply a
 migration, create a live Supabase project, or commit real lead data.
+
+`src/app/(app)/imports/page.tsx` adds the M2 CSV import wizard shell. It uses
+shared wizard metadata from `src/lib/imports/wizard.ts`, displays CSV-only upload
+constraints, and keeps controls disabled until parser, validation, and commit
+behavior are implemented in later M2 slices.
 
 ## Boundaries
 

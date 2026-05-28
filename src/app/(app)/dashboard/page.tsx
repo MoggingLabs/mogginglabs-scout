@@ -1,4 +1,7 @@
+import Link from "next/link";
+
 import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -27,8 +30,14 @@ export default function DashboardPage() {
             Product surfaces arrive in later milestones.
           </CardDescription>
         </CardHeader>
-        <CardContent className="text-sm text-muted-foreground">
-          Signed-in workspace rendered with the dark application theme.
+        <CardContent className="space-y-4 text-sm text-muted-foreground">
+          <p>Signed-in workspace rendered with the dark application theme.</p>
+          <Link
+            href="/imports"
+            className={buttonVariants({ variant: "outline" })}
+          >
+            Open CSV import wizard
+          </Link>
         </CardContent>
       </Card>
     </div>
