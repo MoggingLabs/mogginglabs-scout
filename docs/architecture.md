@@ -56,6 +56,19 @@ Membership selection is deterministic until tenant switching exists: active
 tenant first, then role priority (`owner`, `admin`, `member`, `viewer`), then
 most recent membership update, then tenant id.
 
+## Lead data core
+
+M2 starts with committed but unapplied SQL for lead data ownership and CSV import
+state. `supabase/migrations/0004_lead_data_core.sql` adds tenant-scoped
+`lead_sources`, `import_batches`, `import_rows`, and `leads` tables plus status
+enums, indexes, RLS select policies, and `updated_at` triggers. The matching
+hand-authored TypeScript contracts live in `src/lib/supabase/types.ts` until a
+later live-wiring phase generates types from an applied Supabase project.
+
+The schema keeps lead ownership under `tenant_id`, links imports to their source
+and committed leads, and records only reviewable structure. It does not apply a
+migration, create a live Supabase project, or commit real lead data.
+
 ## Boundaries
 
 - Public pages must build without live Supabase variables.
