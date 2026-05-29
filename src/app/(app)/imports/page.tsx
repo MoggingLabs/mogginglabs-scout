@@ -14,6 +14,7 @@ import {
   CSV_IMPORT_MAX_FILE_SIZE_MB,
   CSV_IMPORT_WIZARD_STEPS
 } from "@/lib/imports/wizard";
+import { LEAD_IMPORT_FIELDS } from "@/lib/imports/csv";
 
 export default function ImportsPage() {
   return (
@@ -37,8 +38,9 @@ export default function ImportsPage() {
           <CardHeader>
             <CardTitle>Upload source file</CardTitle>
             <CardDescription>
-              Parser and commit logic arrive in the next M2 slices. This shell
-              locks the user flow, copy, and constraints without storing files.
+              Parser and column-mapping helpers are now defined for the next
+              import preview step. File persistence and lead commits remain
+              disabled until the validation and commit slices land.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -57,11 +59,12 @@ export default function ImportsPage() {
               </p>
             </div>
             <div className="rounded-md border bg-muted/40 p-4 text-sm text-muted-foreground">
-              No data is uploaded or persisted in this milestone. The controls
-              are intentionally disabled until parsing, validation, and commit
-              behavior are implemented.
+              CSV parsing and suggested column mapping are implemented as local
+              helpers for this milestone. No file is uploaded or persisted yet,
+              and validation/commit controls stay disabled until the next
+              approved slices.
             </div>
-            <Button disabled>Continue to column mapping</Button>
+            <Button disabled>Preview column mapping</Button>
           </CardContent>
         </Card>
 
@@ -88,6 +91,35 @@ export default function ImportsPage() {
                 </li>
               ))}
             </ol>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Lead field mapping</CardTitle>
+            <CardDescription>
+              Suggested mappings target the existing lead data model before row
+              validation and deduplication are enabled.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <dl className="space-y-3">
+              {LEAD_IMPORT_FIELDS.map((field) => (
+                <div key={field.id} className="rounded-md border p-3">
+                  <dt className="flex items-center justify-between gap-3 text-sm font-medium">
+                    {field.label}
+                    {field.required ? (
+                      <Badge variant="destructive">Required</Badge>
+                    ) : (
+                      <Badge variant="outline">Optional</Badge>
+                    )}
+                  </dt>
+                  <dd className="mt-1 text-xs leading-5 text-muted-foreground">
+                    {field.description}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </CardContent>
         </Card>
       </div>
