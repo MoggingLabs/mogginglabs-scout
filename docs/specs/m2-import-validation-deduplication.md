@@ -85,3 +85,9 @@ node scripts/check-no-route-planning.mjs
 - Keep existing lead candidates as an explicit function input; this slice must not open a database dependency.
 - Prefer typed error codes over freeform strings so later UI and persistence can store/replay validation results.
 - Do not add real lead samples to the repo; tests must use synthetic data only.
+
+## Follow-on commit contract
+
+Issue #16 adds a commit helper that consumes `LeadImportValidatedRow[]` from this validation output. The helper does not re-run validation or deduplication; it maps only rows with `status: valid` into `leads` insert payloads and carries skipped invalid/duplicate row evidence forward for callers.
+
+Invalid rows and rows with `status: duplicate` are not inserted as lead records by the commit helper. Normalized lead fields are copied from `normalizedData`, optional absent fields become `null`, and `country` follows the validation/schema default of `US` when no normalized country is present.
