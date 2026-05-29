@@ -38,9 +38,9 @@ export default function ImportsPage() {
           <CardHeader>
             <CardTitle>Upload source file</CardTitle>
             <CardDescription>
-              Parser and column-mapping helpers are now defined for the next
-              import preview step. File persistence and lead commits remain
-              disabled until the validation and commit slices land.
+              Parser, column-mapping, validation, and deduplication helpers are
+              now defined for the import preview foundation. File persistence
+              and lead commits remain disabled until the commit slice lands.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -59,10 +59,10 @@ export default function ImportsPage() {
               </p>
             </div>
             <div className="rounded-md border bg-muted/40 p-4 text-sm text-muted-foreground">
-              CSV parsing and suggested column mapping are implemented as local
-              helpers for this milestone. No file is uploaded or persisted yet,
-              and validation/commit controls stay disabled until the next
-              approved slices.
+              CSV parsing, suggested column mapping, validation, and
+              deduplication are implemented as local helpers for this milestone.
+              No file is uploaded or persisted yet, and commit controls stay
+              disabled until the next approved slice.
             </div>
             <Button disabled>Preview column mapping</Button>
           </CardContent>
@@ -98,8 +98,8 @@ export default function ImportsPage() {
           <CardHeader>
             <CardTitle>Lead field mapping</CardTitle>
             <CardDescription>
-              Suggested mappings target the existing lead data model before row
-              validation and deduplication are enabled.
+              Row validation and deduplication now target the existing lead data
+              model before commit behavior is enabled.
             </CardDescription>
           </CardHeader>
           <CardContent>

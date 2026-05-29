@@ -28,7 +28,8 @@ export const CSV_IMPORT_WIZARD_STEPS: CsvImportWizardStep[] = [
   {
     id: "validate",
     title: "Validate rows",
-    description: "Check required fields, formatting, and duplicate candidates."
+    description:
+      "Check required fields, formatting, default values, and duplicate candidates."
   },
   {
     id: "commit",
