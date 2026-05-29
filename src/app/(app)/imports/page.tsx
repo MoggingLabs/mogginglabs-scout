@@ -27,7 +27,7 @@ export default function ImportsPage() {
           <h1 className="mt-2 text-3xl font-semibold">CSV import wizard</h1>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
             Stage tenant-owned CSV files, map columns, validate rows, and review
-            import readiness before later milestones commit data as leads.
+            import readiness before committing validated rows as leads.
           </p>
         </div>
         <Badge variant="secondary">M2 foundation</Badge>
@@ -39,8 +39,9 @@ export default function ImportsPage() {
             <CardTitle>Upload source file</CardTitle>
             <CardDescription>
               Parser, column-mapping, validation, and deduplication helpers are
-              now defined for the import preview foundation. File persistence
-              and lead commits remain disabled until the commit slice lands.
+              defined for the import preview foundation, and valid-row commit
+              mapping now targets leads. File persistence and live commit
+              controls remain disabled until storage/API integration lands.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -60,9 +61,10 @@ export default function ImportsPage() {
             </div>
             <div className="rounded-md border bg-muted/40 p-4 text-sm text-muted-foreground">
               CSV parsing, suggested column mapping, validation, and
-              deduplication are implemented as local helpers for this milestone.
-              No file is uploaded or persisted yet, and commit controls stay
-              disabled until the next approved slice.
+              deduplication are implemented as local helpers for this milestone,
+              with a commit helper that writes only valid validated rows. No
+              file is uploaded or persisted yet, and this route still has no
+              live commit control.
             </div>
             <Button disabled>Preview column mapping</Button>
           </CardContent>
@@ -98,8 +100,8 @@ export default function ImportsPage() {
           <CardHeader>
             <CardTitle>Lead field mapping</CardTitle>
             <CardDescription>
-              Row validation and deduplication now target the existing lead data
-              model before commit behavior is enabled.
+              Row validation, deduplication, and valid-row commit mapping target
+              the existing lead data model.
             </CardDescription>
           </CardHeader>
           <CardContent>
