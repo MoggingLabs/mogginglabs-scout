@@ -1,4 +1,3 @@
-import { Badge, type BadgeVariant } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
@@ -7,26 +6,15 @@ import {
   CardTitle
 } from "@/components/ui/card";
 import {
-  LEAD_STATUSES,
   displayNullableLeadField,
-  type LeadRecord,
-  type LeadStatus
+  type LeadRecord
 } from "@/lib/leads/contract";
 import { cn } from "@/lib/utils";
 
+import { LeadStatusBadge, formatLeadStatus } from "./lead-status-badge";
+
 export const LEAD_DETAIL_FALLBACK = "Not provided";
 export const LEAD_DETAIL_UNNAMED_COMPANY = "Unnamed lead";
-
-const LEAD_STATUS_LABELS = Object.fromEntries(
-  LEAD_STATUSES.map((status) => [status, titleCaseLeadStatus(status)])
-) as Record<LeadStatus, string>;
-
-const LEAD_STATUS_BADGE_VARIANTS = {
-  new: "secondary",
-  qualified: "default",
-  disqualified: "destructive",
-  archived: "outline"
-} satisfies Record<LeadStatus, BadgeVariant>;
 
 export type LeadDetailField = {
   id: string;
@@ -45,13 +33,6 @@ export type LeadDetailProps = {
   lead: LeadRecord;
   className?: string;
 };
-
-function titleCaseLeadStatus(status: LeadStatus) {
-  return status
-    .split("_")
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(" ");
-}
 
 function displayLeadField(value: string | null | undefined) {
   return displayNullableLeadField(value, LEAD_DETAIL_FALLBACK);
@@ -80,9 +61,7 @@ function createOptionalLink(value: string, href: string | null | undefined) {
   return value === LEAD_DETAIL_FALLBACK || !href ? undefined : href;
 }
 
-export function getLeadStatusLabel(status: LeadStatus) {
-  return LEAD_STATUS_LABELS[status];
-}
+export const getLeadStatusLabel = formatLeadStatus;
 
 export function getLeadDetailSections(lead: LeadRecord): LeadDetailSection[] {
   const domain = displayLeadField(lead.domain);
@@ -190,14 +169,6 @@ export function getLeadDetailSections(lead: LeadRecord): LeadDetailSection[] {
       ]
     }
   ];
-}
-
-export function LeadStatusBadge({ status }: { status: LeadStatus }) {
-  return (
-    <Badge variant={LEAD_STATUS_BADGE_VARIANTS[status]}>
-      {getLeadStatusLabel(status)}
-    </Badge>
-  );
 }
 
 function LeadDetailValue({ field }: { field: LeadDetailField }) {

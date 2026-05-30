@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { LeadTableSkeleton } from "@/components/leads/lead-table";
+import { LeadTableSkeleton } from "@/components/leads/lead-table-states";
 
 export default function LeadsLoading() {
   return (
@@ -14,7 +14,7 @@ export default function LeadsLoading() {
             Loading tenant-owned lead records.
           </p>
         </div>
-        <Badge variant="secondary">Read-only</Badge>
+        <Badge variant="secondary">Loading</Badge>
       </header>
 
       <div className="rounded-lg border bg-card p-4">
