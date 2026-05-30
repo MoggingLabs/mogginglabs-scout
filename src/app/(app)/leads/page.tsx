@@ -1,6 +1,9 @@
-import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
+
+import { buttonVariants } from "@/components/ui/button";
 import { LeadFiltersForm } from "@/components/leads/lead-filters";
-import { LeadErrorState, LeadTable } from "@/components/leads/lead-table";
+import { LeadTable } from "@/components/leads/lead-table";
+import { LeadErrorState } from "@/components/leads/lead-table-states";
 import { getAppContext } from "@/lib/account/context";
 import {
   normalizeLeadFilters,
@@ -40,10 +43,13 @@ export default async function LeadsPage({ searchParams }: LeadsPageProps) {
           <h1 className="mt-2 text-3xl font-semibold">Leads</h1>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
             Review tenant-owned lead records with deterministic status and
-            search filters. This surface is read-only for the M2 foundation.
+            search filters, create manual leads, and open detail or edit flows
+            from the table.
           </p>
         </div>
-        <Badge variant="secondary">Read-only</Badge>
+        <Link className={buttonVariants()} href="/leads/new">
+          Create lead
+        </Link>
       </header>
 
       <LeadFiltersForm filters={filters} />

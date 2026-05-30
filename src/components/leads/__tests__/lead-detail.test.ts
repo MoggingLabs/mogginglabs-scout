@@ -141,10 +141,11 @@ describe("lead detail components", () => {
     expect(rendered).toContain("2026-01-01 10:30 UTC");
   });
 
-  it("renders a controlled drawer shell without list-page state wiring", () => {
+  it("renders a controlled drawer shell for the list-page wiring", () => {
     const renderedOpen = renderToStaticMarkup(
       createElement(LeadDrawer, {
         lead: createLeadRecord({ status: "new" }),
+        onClose: () => undefined,
         open: true
       })
     );
@@ -156,6 +157,8 @@ describe("lead detail components", () => {
     );
 
     expect(renderedOpen).toContain('role="dialog"');
+    expect(renderedOpen).toContain('tabindex="-1"');
+    expect(renderedOpen).toContain('aria-hidden="true"');
     expect(renderedOpen).toContain("Lead details");
     expect(renderedOpen).toContain("New");
     expect(renderedClosed).toBe("");

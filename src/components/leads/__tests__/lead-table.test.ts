@@ -64,6 +64,8 @@ describe("LeadTable", () => {
     expect(html).toContain("Porto, North, PT");
     expect(html).toContain("sales@acme.example");
     expect(html).toContain("Import");
+    expect(html).toContain("Details");
+    expect(html).toContain("/leads/lead-1/edit");
   });
 
   it("renders a filtered empty state", () => {
